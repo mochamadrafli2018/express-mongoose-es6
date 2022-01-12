@@ -12,7 +12,7 @@
 
 This command will be installing all the package that listed in package.json file.
 
-## Running for developing
+## Running for development
 
 `npm run dev`
 
@@ -21,17 +21,31 @@ App will be running on port 5000 (http://localhost:5000).
 ## Structure
 
 ├── config
+
 │   ├── mongodb.config.js
+
 ├── controller
-│   ├── controller.authentication.js
-│   ├── controller.crud.js
+
+│   ├── create.js
+
+│   ├── delete.js
+
+│   ├── deleteall.js
+
+│   ├── read.js
+
+│   ├── readbyid.js
+
+│   ├── update.js
+
 ├── model
+
 │   ├── data.schema.js
-│   ├── user.schema.js
+
 ├── routes
-│   └── routes
-├── views
-│   └── index.ejs
+
+│   └── api.js
+
 └── app.js
 
 ## API CRUD
