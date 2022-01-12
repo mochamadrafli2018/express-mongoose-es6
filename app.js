@@ -14,16 +14,16 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// view engine
-app.set('view engine', 'ejs')
-
 // mongodb connection
 require('./config/mongodb.config').sync;
 
 // routes
 const apiroutes = require('./routes/api.js');
-const viewroutes = require('./routes/web.js');
-app.use('/',viewroutes)
+app.get('/',(req,res) => {
+  res.status(200).send({
+    message:'Success'
+  })
+})
 app.use('/api',apiroutes);
 
 // catch 404 and forward to error handler
