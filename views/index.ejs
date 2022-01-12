@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <script src='https://cdn.tailwindcss.com'></script>
+    <link rel="icon" href="https://clipground.com/images/programming-logo-clipart-5.jpg"></link>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' integrity='sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm' crossorigin='anonymous'>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js' integrity='sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl' crossorigin='anonymous'></script>
+    <title>Web Programming Reference</title>
+  </head>
+  <body style='background-color:rgb(186, 225, 248); text-align:left;'>
+    <div class='bg-white container mx-auto my-2 p-3 rounded w-75'>
+      <h3 class='font-weight-bold mx-auto text-center'>Web Programming Reference</h3>
+      <% if (data !== null) { %>
+        <% data.forEach((i) => { %>
+          <div className='mx-auto shadow'>
+            <h4 className=""><%= i.title %></h4>
+            <p className=""><%= i.url %></p>
+            <div style="float:left">
+              <a href='/api/<%= data.title %>'>Edit</a> &nbsp;							
+              <form method="post" action="/api/delete/<%= data.title %>" style="float:right">
+                <input type="submit" name="delete" value='Delete' 
+                  onClick="return confirm('Are you sure you want to delete?')" 
+                />
+                <input type="hidden" name="_method" value="DELETE" />
+              </form>
+            </div>
+          </div>
+        <% }) %>
+      <% } %>
+      </table>
+    </div>
+  </body>
+</html>
