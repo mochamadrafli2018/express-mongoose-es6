@@ -1,4 +1,4 @@
-const Schema = require('../model/data.schema.js');
+const Schema = require('../../model/data.schema.js');
 
 //get and find a single data with id
 exports.findById = (req, res) => {

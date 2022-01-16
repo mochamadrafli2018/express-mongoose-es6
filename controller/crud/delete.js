@@ -1,4 +1,4 @@
-const Schema = require('../model/data.schema.js');
+const Schema = require('../../model/data.schema.js');
 
 //Delete a data with the specified id
 exports.findByIdAndRemove = (req, res) => {

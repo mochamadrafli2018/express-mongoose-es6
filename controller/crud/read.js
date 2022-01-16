@@ -1,4 +1,4 @@
-const Schema = require('../model/data.schema.js');
+const Schema = require('../../model/data.schema.js');
 
 //retrieve all data from the DB
 exports.find = (req, res) => {

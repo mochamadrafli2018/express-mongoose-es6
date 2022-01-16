@@ -1,4 +1,4 @@
-const Schema = require('../model/data.schema.js');
+const Schema = require('../../model/data.schema.js');
 
 //Update a message identified by the  id in the request
 exports.findOneAndUpdate = (req, res) => {
