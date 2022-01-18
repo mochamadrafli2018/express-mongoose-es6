@@ -18,13 +18,15 @@ app.use(bodyParser.json());
 require('./config/mongodb.config').sync;
 
 // routes
-const apiroutes = require('./routes/api.js');
+const AuthRoutes = require('./routes/api/auth.route.js');
+const CrudRoutes = require('./routes/api/crud.route.js');
 app.get('/',(req,res) => {
   res.status(200).send({
     message:'Success'
   })
 })
-app.use('/api',apiroutes);
+app.use('/api',AuthRoutes);
+app.use('/api',CrudRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

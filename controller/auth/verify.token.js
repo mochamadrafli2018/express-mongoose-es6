@@ -1,31 +1,24 @@
-const jwt = require("jsonwebtoken");
-User = require("../../model/user.schema.js");
-
-exports.verifytoken = (req, res) => {
+const jwt = require('jsonwebtoken');
+Schema = require('../../model/user.schema.js');
+// authenticating a token
+exports.verifyAccessToken = (req, res) => {
     const header = req.headers.authorization;
-    const keyword = req.headers.authorization.split(' ')[0] === 'JWT';
-    if (header && keyword) {
-        jwt.verify(keyword, process.env.API_SECRET, function (err, decode) {
-            if (err) {
-                console.log('data not found')
-                return res.status(500).send({message: err});
-            }
-            User.findOne({_id: decode.id})
-            .exec((err, user) => {
-                if (err) { 
-                    console.log('fail')
-                    return res.status(500).send({message: err}); 
-                }
-                else if (req.user === 'user') {
-                    return res.status(403).send({message: "Invalid JWT token"});
-                }
-                else if (req.user == 'admin') {
-                    return res.status(200).send({message: "Congratulations! but there is no hidden content"});
-                }
-            })          
-        });
-    }
-    else {
-        return res.status(403).send({message: "Unauthorised access"});
-    }
+    const authHeader = req.headers['authorization']; // header and authHeader are same
+    const token = authHeader.split(' ')[1];
+    console.log(authHeader);
+    console.log(header);
+    console.log(token);
+    // validation
+    if (!authHeader) { return res.status(403).send({message: 'request header undefined'}); }
+    // convert token to json (decoded)
+    const decodedResult = jwt.verify(token, process.env.TOKEN_SECRET);
+    console.log(decodedResult.id);
+    Schema.findOne({ _id: decodedResult.id }).then(user => {
+        if (user.role === 'admin') { 
+            return res.status(200).send({message: 'congratulations! there is no hidden content'});
+        }
+        return res.status(200).send({message: 'congratulations! but there is a hidden content'});
+    }).catch(err => { 
+        return res.status(401).send({message: 'invalid jwt token'}); 
+    });
 };

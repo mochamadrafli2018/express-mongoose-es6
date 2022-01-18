@@ -32,8 +32,8 @@ exports.login = (req, res) => {
                 else if (passwordIsValid) {
                     // signing token with user id
                     var accessToken = jwt.sign(
-                        {id: user.id},
-                        process.env.API_SECRET,
+                        {id: user._id},
+                        process.env.TOKEN_SECRET,
                         {expiresIn: 86400},
                     );
                     console.log('login success');
