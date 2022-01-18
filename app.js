@@ -20,11 +20,7 @@ require('./config/mongodb.config').sync;
 // routes
 const AuthRoutes = require('./routes/api/auth.route.js');
 const CrudRoutes = require('./routes/api/crud.route.js');
-app.get('/',(req,res) => {
-  res.status(200).send({
-    message:'Success'
-  })
-})
+app.get('/',(req,res) => { res.status(200).send({ message:'Success' }); })
 app.use('/api',AuthRoutes);
 app.use('/api',CrudRoutes);
 
