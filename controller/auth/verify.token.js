@@ -14,10 +14,18 @@ exports.verifyAccessToken = (req, res) => {
     const decodedResult = jwt.verify(token, process.env.TOKEN_SECRET);
     console.log(decodedResult.id);
     Schema.findOne({ _id: decodedResult.id }).then(user => {
-        if (user.role === 'admin') { 
-            return res.status(200).send({message: 'congratulations! there is no hidden content'});
+        if (user.role === 'admin') {
+            console.log(user.name);
+            return res.status(200).send({
+                message: 'congratulations! there is no hidden content',
+                name: user.name,
+            });
         }
-        return res.status(200).send({message: 'congratulations! but there is a hidden content'});
+        console.log(user.name);
+        return res.status(200).send({
+            message: 'congratulations! but there is a hidden content',
+            name: user.name,
+        });
     }).catch(err => { 
         return res.status(401).send({message: 'invalid jwt token'}); 
     });

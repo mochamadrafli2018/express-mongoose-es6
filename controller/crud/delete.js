@@ -5,7 +5,7 @@ exports.findByIdAndRemove = (req, res) => {
     Schema.findByIdAndRemove(req.params.id)
     .then((data) => {
         if(!data) {
-            return res.status(404).send({ message: 'data not found with id ' + req.params.id + '. Make sure the id is not wrong' });
+            return res.status(403).send({ message: 'data not found with id ' + req.params.id + '. Make sure the id is not wrong' });
         }
         res.status(200).send({ message: 'data deleted successfully!' });
     })
