@@ -2,7 +2,7 @@ const Schema = require('../../model/data.schema.js');
 
 //get and find a single data with id
 exports.findById = (req, res) => {
-    Schema.findById(req.params.id)
+    Schema.findById({_id:req.params.id})
     .then((data) => {
         if(!data) {
             return res.status(404).send({ message: 'data not found with id ' + req.params.id + '. Make sure the id was correct' });
