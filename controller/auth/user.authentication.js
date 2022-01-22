@@ -33,7 +33,7 @@ exports.signin = (req, res) => {
                     // signing token with user id
                     var accessToken = jwt.sign(
                         {id: user._id},
-                        process.env.TOKEN_SECRET,
+                        process.env.JWT_SECRET,
                         {expiresIn: 86400},
                     );
                     console.log('login success');

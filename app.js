@@ -8,7 +8,7 @@ require('dotenv').config();
 const cors = require('cors');
 app.use(cors());
 
-// middleware
+// middleware 
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -20,7 +20,7 @@ require('./config/mongodb.config').sync;
 // routes
 const AuthRoutes = require('./routes/api/auth.route.js');
 const CrudRoutes = require('./routes/api/crud.route.js');
-app.get('/',(req,res) => { res.status(200).send({ message:'Success' }); })
+app.get('/',(req,res) => { return res.status(200).send({ message:'Success' }); })
 app.use('/api',AuthRoutes);
 app.use('/api',CrudRoutes);
 

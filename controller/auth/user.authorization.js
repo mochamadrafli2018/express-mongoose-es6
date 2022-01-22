@@ -11,7 +11,7 @@ exports.verifyaccesstoken = (req, res) => {
     // validation
     if (!authHeader) { return res.status(403).send({message: 'request header undefined'}); }
     // convert token to json (decoded)
-    const decodedResult = jwt.verify(token, process.env.TOKEN_SECRET);
+    const decodedResult = jwt.verify(token, process.env.JWT_SECRET);
     console.log(decodedResult.id);
     Schema.findOne({ _id: decodedResult.id }).then(user => {
         if (user.role === 'admin') {
