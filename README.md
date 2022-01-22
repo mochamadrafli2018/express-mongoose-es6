@@ -19,9 +19,9 @@ For development, create file named .env and make variable ATLAS_URI then assign 
 
 Example :
 
-`ATLAS_URI = mongodb+srv://admin:<password>@cluster0.8z0ls.mongodb.net/<database_name>?retryWrites=true&w=majority
-MONGO_URI = mongodb://localhost:27017/express-rest-api
-JWT_SECRET=Super_secret_string`
+`ATLAS_URI = mongodb+srv://admin:<password>@cluster0.8z0ls.mongodb.net/<database_name>?retryWrites=true&w=majority`
+`MONGO_URI = mongodb://localhost:27017/express-rest-api`
+`JWT_SECRET=Super_secret_string`
 
 ## Running for developing
 
@@ -60,6 +60,15 @@ App will be running on port 5000 (http://localhost:5000).
 - `GET` : Verify token (user authorization)
 - `Authorization: Bearer JWT_ACCESS_TOKEN`
 
+## API Endpoint for Development 
+
+http://127.0.0.1:5000
+## Deploying command
+
+`npm run start`
+
+App will be running on deployed party's port.
+
 ## Reference
 
 Front End React with Axios : https://www.santrikoding.com/tutorial-authentication-dengan-reactjs-laravel-jwt-3-membuat-resful-api-authentication
@@ -69,11 +78,3 @@ React Express Auth : https://github.com/weibenfalk/jwtToken-react-express
 React Express MongoDB Auth : https://github.com/trulymittal/API-Authentication-NodeJs
 
 Express login, register, verify with JWT Token: https://www.topcoder.com/thrive/articles/authentication-and-authorization-in-express-js-api-using-jwt
-
-## Deploying command
-
-`npm run start`
-
-App will be running on deployed party's port.
-
-## API Endpoint : http://127.0.0.1:5000
