@@ -1,4 +1,4 @@
-const Schema = require('../../model/data.schema.js');
+const Schema = require('../../models/data.schema.js');
 
 // create and save a new data
 exports.save = (req, res) => {

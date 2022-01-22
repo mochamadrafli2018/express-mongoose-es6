@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-Schema = require('../../model/user.schema.js');
+Schema = require('../../models/user.schema.js');
 // user authorization with verify the access token
 exports.verifyaccesstoken = (req, res) => {
     const header = req.headers.authorization;

@@ -1,4 +1,4 @@
-const Schema = require('../../model/data.schema.js');
+const Schema = require('../../models/data.schema.js');
 
 //Delete all data in collection
 exports.remove = (req, res) => {

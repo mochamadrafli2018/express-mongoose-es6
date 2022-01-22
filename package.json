@@ -1,12 +1,21 @@
 {
-  "name": "express-rest-api",
-  "author": "mochamad-rafli-ramadhan",
-  "version": "0.0.1",
+  "name": "express-mongodb-mongoose-crud",
+  "author": "mochamadrafli2018",
+  "license": "MIT",
+  "version": "1.0.0",
   "engines": {
-    "node": "14.x",
-    "npm": "6.x"
+    "node": ">=14.x",
+    "npm": ">=6.x"
   },
-  "private": true,
+  "description": "Node.js Restful CRUD and Auth API with Node.js, Express, Mongoose and MongoDB Atlas",
+  "private": false,
+  "main": "app.js",
+  "keywords": [
+    "nodejs",
+    "express",
+    "mongoose",
+    "mongodb atlas"
+  ],
   "scripts": {
     "dev": "nodemon ./app.js",
     "start": "NODE_ENV=production node ./app.js"
@@ -24,7 +33,4 @@
   "devDependencies": {
     "nodemon": "^2.0.12"
   },
-  "main": "app.js",
-  "license": "ISC",
-  "description": ""
 }

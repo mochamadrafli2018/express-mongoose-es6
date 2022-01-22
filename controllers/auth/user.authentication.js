@@ -1,4 +1,4 @@
-const Schema = require('../../model/user.schema');
+const Schema = require('../../models/user.schema');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 // user authentication
