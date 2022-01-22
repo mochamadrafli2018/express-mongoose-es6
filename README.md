@@ -45,7 +45,7 @@ App will be running on port 5000 (http://localhost:5000).
 - `PUT` : Update a data
 - `DELETE` : Delete a data
 
-### API AUTH (SIGN IN, SIGN UP)
+### AUTH Application
 
 #### /api/register
 
@@ -53,12 +53,11 @@ App will be running on port 5000 (http://localhost:5000).
 
 #### /api/login
 
-- `POST` : User login
+- `POST` : User login (user authentication)
 
 #### /api/verify
 
-- `GET` : Verify token
-
+- `GET` : Verify token (user authorization)
 - `Authorization: Bearer JWT_ACCESS_TOKEN`
 
 ## Reference
@@ -77,4 +76,4 @@ Express login, register, verify with JWT Token: https://www.topcoder.com/thrive/
 
 App will be running on deployed party's port.
 
-# API Endpoint : http://127.0.0.1:5000
+## API Endpoint : http://127.0.0.1:5000
