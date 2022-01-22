@@ -3,8 +3,9 @@
 ## Requirement
 
 1. Node.js
-2. MongoDB and MongoDB GUI (MongoDBCompass)
-3. Postman
+2. MongoDB Atlas
+3. MongoDB GUI (MongoDBCompass)
+4. Postman
 
 ## Set up
 
@@ -12,59 +13,61 @@
 
 This command will be installing all the package that listed in package.json file.
 
-## Running for development
+## File .env
+
+For development, make file .env and make variable ATLAS_URI then assign these variable with MongoDB Atlas URL.
+
+Example :
+
+`ATLAS_URI = mongodb+srv://admin:<password>@cluster0.8z0ls.mongodb.net/<database_name>?retryWrites=true&w=majority`
+
+## Running for developing
 
 `npm run dev`
 
 App will be running on port 5000 (http://localhost:5000).
 
-## Structure
+## API Endpoint
 
-├── config
+### CRUD Application
 
-│   ├── mongodb.config.js
-
-├── controller
-
-│   ├── create.js
-
-│   ├── delete.js
-
-│   ├── deleteall.js
-
-│   ├── read.js
-
-│   ├── readbyid.js
-
-│   ├── update.js
-
-├── model
-
-│   ├── data.schema.js
-
-├── routes
-
-│   └── api.js
-
-└── app.js
-
-## API CRUD
-
-### /api
+#### /api
 
 - `GET` : Get all data
 - `POST` : Create a new data
 - `DELETE` : Delete all data
 
-### /api/:id
+#### /api/:id
 
 - `GET` : Get a data
 - `PUT` : Update a data
 - `DELETE` : Delete a data
 
-## Postman Testing Link
+### API AUTH (SIGN IN, SIGN UP)
 
-https://go.postman.co/workspace/My-Workspace~c35575c8-8360-4da9-8db8-c0509f46f9ce/collection/13651770-24cd6129-66d8-44e7-a334-65658f984269
+#### /api/register
+
+- `POST` : Create new user data
+
+#### /api/login
+
+- `POST` : User login
+
+#### /api/verify
+
+- `GET` : Verify token
+
+- `Authorization: Bearer JWT_ACCESS_TOKEN`
+
+## Reference
+
+Front End React with Axios : https://www.santrikoding.com/tutorial-authentication-dengan-reactjs-laravel-jwt-3-membuat-resful-api-authentication
+
+React Express Auth : https://github.com/weibenfalk/jwtToken-react-express
+
+React Express MongoDB Auth : https://github.com/trulymittal/API-Authentication-NodeJs
+
+Express login, register, verify with JWT Token: https://www.topcoder.com/thrive/articles/authentication-and-authorization-in-express-js-api-using-jwt
 
 ## Deploying command
 

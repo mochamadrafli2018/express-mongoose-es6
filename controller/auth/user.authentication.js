@@ -1,8 +1,8 @@
 const Schema = require('../../model/user.schema');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-
-exports.login = (req, res) => {
+// user authentication
+exports.signin = (req, res) => {
     // validate request
     let {email,password} = req.body;
     console.log(req.body);

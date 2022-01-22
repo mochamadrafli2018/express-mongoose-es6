@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
 
-// sing in
-router.post('/login',require('../../controller/auth/user.login.js').login);
-// sing up
-router.post('/register',require('../../controller/auth/newuser.register.js').register);
-// verify token
-router.get('/verify',require('../../controller/auth/verify.token.js').verifyAccessToken);
+// sign up 
+router.post('/register',require('../../controller/auth/newuser.register.js').signup);
+// sign in (authentication) 
+router.post('/login',require('../../controller/auth/user.authentication.js').signin);
+// verify token (authorization)
+router.get('/verify',require('../../controller/auth/user.authorization.js').verifyaccesstoken);
 
 module.exports = router;

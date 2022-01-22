@@ -1,7 +1,7 @@
 const Schema = require('../../model/user.schema');
 const bcrypt = require('bcrypt');
 
-exports.register = (req, res) => {
+exports.signup = (req, res) => {
     // validate requests
     let {name,email,password,gender} = req.body;
     console.log(req.body);
