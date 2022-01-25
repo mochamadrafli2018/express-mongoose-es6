@@ -17,8 +17,8 @@
     "mongodb atlas"
   ],
   "scripts": {
-    "dev": "nodemon ./app.js",
-    "start": "NODE_ENV=production node ./app.js"
+    "dev": "nodemon ./server.js",
+    "start": "NODE_ENV=production node ./server.js"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
@@ -32,5 +32,5 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.12"
-  },
+  }
 }
