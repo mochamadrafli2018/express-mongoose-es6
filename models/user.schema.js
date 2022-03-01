@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 module.exports = mongoose.model(
-  "Register", 
+  "Register",
   new mongoose.Schema(
     {
       name : {
@@ -28,8 +28,12 @@ module.exports = mongoose.model(
       },
       role: {
         type: String,
-        enum: ["user", "admin"],
+        enum: ["member", "admin"],
         required: true,
+      },
+      updatedScreeningResult : { 
+        type: String,
+        default: null,
       },
     },
     { 
