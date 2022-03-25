@@ -11,6 +11,7 @@ exports.newuser = (req, res) => {
     if (!password) { return res.status(400).send({ message: 'Password harus di isi !' }); }
     if (password.length < 8) { return res.status(400).send({ message: 'Password harus sama dengan atau lebih dari 8 karakter !' }); }
     if (!gender) { return res.status(400).send({ message: 'Jenis kelamin harus di isi !' }); }
+    if (!role) { return res.status(400).send({ message: 'Role harus di isi !' }); }
     // check if email already exist
     try {
         Schema.findOne({ email }).then((user)=>{
@@ -80,27 +81,57 @@ exports.findById = (req, res) => {
 // update a user data identified by the  id in the request
 exports.findOneAndUpdate = (req, res) => {
     console.log(req.body);
-    const newUpdatedData = new Schema({ 
-        name: req.body.name,
-        email: req.body.email,
-        password: req.body.password,
-        gender: req.body.gender,
-        role: req.body.role,
-        updatedScreeningResult: req.body.updatedScreeningResult,
-        _id: req.params.id
-    });
-    Schema.findByIdAndUpdate({_id: req.params.id}, newUpdatedData, { new: true })
-    .then((updatedData) => {
-        if(!updatedData) {
-            return res.status(404).send({ message: 'data not found with _id ' + req.params._id, });
+    Schema.findById({_id:req.params.id})
+    .then((currentData) => {
+        if(!currentData) {
+            return res.status(404).send({ message: 'data not found with id ' + req.params.id + '. Make sure the id was correct' });
         }
-        console.log('success update data');
-        return res.status(200).send(updatedData);
-    }).catch((err) => {
-        if(err.kind === 'Object_id') {
-            return res.status(404).send({ message: 'data not found with _id ' + req.params._id, });
+        if (!req.body.name) { newName = currentData.name}
+        if (!req.body.email) { newEmail = currentData.email}
+        if (!req.body.password) { newPassword = currentData.password}
+        if (!req.body.gender) { newGender = currentData.gender}
+        if (!req.body.role) { newRole = currentData.role}
+        if (!req.body.updatedScreeningResult) { 
+            newUpdatedScreeningResult = currentData.updatedScreeningResult
         }
-        return res.status(500).send({ message: 'error updating data with _id ' + req.params._id, });
+        if (req.body.name) { newName = req.body.name}
+        if (req.body.email) { newEmail = req.body.email}
+        if (req.body.password) { newPassword = req.body.password}
+        if (req.body.gender) { newGender = req.body.gender}
+        if (req.body.role) { newRole = req.body.role}
+        if (req.body.updatedScreeningResult) { 
+            newUpdatedScreeningResult = req.body.updatedScreeningResult
+        }
+        const newUpdatedData = new Schema({
+            name: newName,
+            email: newEmail,
+            password: newPassword,
+            gender: newGender,
+            role: newRole,
+            updatedScreeningResult: newUpdatedScreeningResult,
+            _id: req.params.id
+        });
+        console.log(newUpdatedData)
+        // update with new data
+        Schema.findByIdAndUpdate({_id: req.params.id}, newUpdatedData, { new: true })
+        .then((updatedData) => {
+            if(!updatedData) {
+                return res.status(404).send({ message: 'data not found with _id ' + req.params._id, });
+            }
+            console.log('success update data');
+            return res.status(200).send(updatedData);
+        }).catch((err) => {
+            if(err.kind === 'Object_id') {
+                return res.status(404).send({ message: 'data not found with _id ' + req.params._id, });
+            }
+            return res.status(500).send({ message: 'error updating data with _id ' + req.params._id, });
+        });
+    })
+    .catch((err) => {
+        if(err.kind === 'ObjectId') {
+            return res.status(404).send({ message: 'data not found with id ' + req.params.id });
+        }
+        return res.status(500).send({ message: 'error retrieving data with id ' + req.params.id });
     });
 };
 
