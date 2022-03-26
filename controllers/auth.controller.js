@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 // user authentication
-exports.signin = (req, res) => {
+exports.signIn = (req, res) => {
     // validate request
     let {email,password} = req.body;
     console.log(req.body);
@@ -56,7 +56,7 @@ exports.signin = (req, res) => {
 }
 
 // user authorization with verify the access token
-exports.verifyaccesstoken = (req, res) => {
+exports.verifyAccessToken = (req, res) => {
     const header = req.headers.authorization;
     const authHeader = req.headers['authorization']; // header and authHeader are same
     const token = authHeader.split(' ')[1];

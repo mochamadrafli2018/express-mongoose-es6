@@ -1,4 +1,4 @@
-# Express (4.17.1) and MongoDB Template for CRUD and Authentication Application
+# Express (4.17.1), Mongoose (6.1.4) and MongoDB Portfolio for CRUD and Auth Application
 
 ## Requirement
 
@@ -9,7 +9,9 @@
 
 ## Set up
 
-`npm install`
+```
+npm install
+```
 
 This command will be installing all the package that listed in package.json file.
 
@@ -23,53 +25,31 @@ Example :
 `MONGO_URI = mongodb://localhost:27017/express-rest-api`
 `JWT_SECRET=Super_secret_string`
 
-## Running for developing
+## Running for development
 
-`npm run dev`
+```
+npm run dev
+```
 
 App will be running on port 5000 (http://localhost:5000).
 
+### What is this Repository for?
+
+This project was my undergraduate thesis for chatbot backend that build with express.js and sequelize with mysql connection.
+
+### Clone this Repository ?
+
+Feel free to clone this repo.
+
 ## API Endpoint
 
-### CRUD Application
-
-#### /api
-
-- `GET` : Get all data
-- `POST` : Create a new data
-- `DELETE` : Delete all data
-
-#### /api/:id
-
-- `GET` : Get a data
-- `PUT` : Update a data
-- `DELETE` : Delete a data
-
-### AUTH Application
-
-#### /api/register
-
-- `POST` : Create new user data
-
-#### /api/login
-
-- `POST` : User login (user authentication)
-
-#### /api/verify
-
-- `GET` : Verify token (user authorization)
-- `Authorization: Bearer JWT_ACCESS_TOKEN`
+Open `./routes/routes.js`
 
 ## API Endpoint for Development 
 
 http://127.0.0.1:5000
-## Deploying command
 
-`npm run start`
-
-App will be running on deployed party's port.
-
-## Reference
+## Reference Documentation
 
 Front End React with Axios : https://www.santrikoding.com/tutorial-authentication-dengan-reactjs-laravel-jwt-3-membuat-resful-api-authentication
 

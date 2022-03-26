@@ -1,7 +1,7 @@
 const Schema = require('../models/user.schema');
 const bcrypt = require('bcrypt');
 
-exports.newuser = (req, res) => {
+exports.newUser = (req, res) => {
     // validate requests
     let {name,email,password,gender,role} = req.body;
     console.log(req.body);
@@ -83,26 +83,20 @@ exports.findOneAndUpdate = (req, res) => {
     console.log(req.body);
     Schema.findById({_id:req.params.id})
     .then((currentData) => {
-        if(!currentData) {
-            return res.status(404).send({ message: 'data not found with id ' + req.params.id + '. Make sure the id was correct' });
-        }
+        let {newName, newEmail, newPassword, newGender, newRole, newUpdatedScreeningResult} = '';
         if (!req.body.name) { newName = currentData.name}
         if (!req.body.email) { newEmail = currentData.email}
         if (!req.body.password) { newPassword = currentData.password}
         if (!req.body.gender) { newGender = currentData.gender}
         if (!req.body.role) { newRole = currentData.role}
-        if (!req.body.updatedScreeningResult) { 
-            newUpdatedScreeningResult = currentData.updatedScreeningResult
-        }
+        if (!req.body.updatedScreeningResult) { newUpdatedScreeningResult = currentData.updatedScreeningResult}
         if (req.body.name) { newName = req.body.name}
         if (req.body.email) { newEmail = req.body.email}
         if (req.body.password) { newPassword = req.body.password}
         if (req.body.gender) { newGender = req.body.gender}
         if (req.body.role) { newRole = req.body.role}
-        if (req.body.updatedScreeningResult) { 
-            newUpdatedScreeningResult = req.body.updatedScreeningResult
-        }
-        const newUpdatedData = new Schema({
+        if (req.body.updatedScreeningResult) { newUpdatedScreeningResult = req.body.updatedScreeningResult}
+        const newData = new Schema({
             name: newName,
             email: newEmail,
             password: newPassword,
@@ -111,13 +105,12 @@ exports.findOneAndUpdate = (req, res) => {
             updatedScreeningResult: newUpdatedScreeningResult,
             _id: req.params.id
         });
-        console.log(newUpdatedData)
+        console.log(newData)
         // update with new data
-        Schema.findByIdAndUpdate({_id: req.params.id}, newUpdatedData, { new: true })
+        Schema.findByIdAndUpdate({
+            _id: req.params.id}, newData, { new: true }
+        )
         .then((updatedData) => {
-            if(!updatedData) {
-                return res.status(404).send({ message: 'data not found with _id ' + req.params._id, });
-            }
             console.log('success update data');
             return res.status(200).send(updatedData);
         }).catch((err) => {

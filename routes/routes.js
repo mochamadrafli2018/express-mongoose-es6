@@ -2,11 +2,11 @@ const express = require('express');
 const router = express.Router();
 
 // sign up new user
-router.post('/register', require('../controllers/user.controller.js').newuser);
+router.post('/register', require('../controllers/user.controller.js').newUser);
 // sign in (user authentication)
-router.post('/login', require('../controllers/auth.controller.js').signin);
+router.post('/login', require('../controllers/auth.controller.js').signIn);
 // verify token (user authorization)
-router.get('/verify', require('../controllers/auth.controller').verifyaccesstoken);
+router.get('/verify', require('../controllers/auth.controller').verifyAccessToken);
 // read all user data
 router.get('/users', require('../controllers/user.controller.js').find);
 // read user data by id
@@ -17,18 +17,5 @@ router.put('/users/:id', require('../controllers/user.controller.js').findOneAnd
 router.delete('/users/:id', require('../controllers/user.controller.js').findByIdAndRemove);
 // delete all user data
 router.delete('/users', require('../controllers/user.controller.js').remove);
-
-// create new data
-router.post('/data', require('../controllers/crud.controller.js').save);
-// read all data
-router.get('/data', require('../controllers/crud.controller.js').find);
-// read data by id
-router.get('/data/:id', require('../controllers/crud.controller.js').findById);
-// update data by id
-router.put('/data/:id', require('../controllers/crud.controller.js').findOneAndUpdate);
-// delete data by id
-router.delete('/data/:id', require('../controllers/crud.controller.js').findByIdAndRemove);
-// delete all data
-router.delete('/data', require('../controllers/crud.controller.js').remove);
 
 module.exports = router;
