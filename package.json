@@ -1,6 +1,6 @@
 {
-  "name": "express-mongodb-mongoose-crud",
-  "author": "mochamadrafli2018",
+  "name": "backend-chatbot-express-mongoose",
+  "author": "mochamad-rafli-ramadhan",
   "license": "MIT",
   "version": "1.0.0",
   "engines": {
@@ -9,7 +9,7 @@
   },
   "description": "Node.js Restful CRUD and Auth API with Node.js, Express, Mongoose and MongoDB Atlas",
   "private": false,
-  "main": "app.js",
+  "main": "server.js",
   "keywords": [
     "nodejs",
     "express",
