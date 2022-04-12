@@ -20,9 +20,7 @@ exports.signIn = (req, res) => {
             else if (user) {
                 console.log('Email ditemukan pada database.');
                 // comparing passwords
-                var passwordIsValid = bcrypt.compareSync(
-                    req.body.password, user.password
-                );
+                var passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
                 if (!passwordIsValid) {
                     console.log('Email terdaftar, tapi password salah.');
                     return res.status(409).send({
