@@ -41,5 +41,5 @@ module.exports = mongoose.model(
     },
   ),
   // collection
-  'user_db',
+  'users',
 );
