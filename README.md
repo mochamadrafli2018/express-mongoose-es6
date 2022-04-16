@@ -1,4 +1,4 @@
-## Express (4.17.1), Mongoose (6.1.4) and MongoDB Portfolio for CRUD and Auth Application
+## Express (4.17.3), Mongoose (6.1.4) and MongoDB Portfolio for CRUD and Auth Application
 
 ### Requirement
 
