@@ -1,24 +1,26 @@
-const express = require('express');
-const app = express();
-const bodyParser = require('body-parser');
-const createError = require('http-errors');
-require('dotenv').config();
+import express from 'express'
+import bodyParser from 'body-parser'
+import createError from 'http-errors'
+import dontev from 'dotenv'
+import cors from 'cors'
+import routes from './routes/index.js'
 
+const app = express();
+// set dontev to use env in development
+dontev.config();
 // cors
-const cors = require('cors');
 app.use(cors());
 
-// middleware 
+// middleware
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(bodyParser.json());
 
 // mongodb connection
-require('./config/mongodb.config').sync;
+import ('./config/mongodb.config.js').sync;
 
 // routes
-const routes = require('./routes/routes.js');
 app.get('/',(req,res) => { 
   return res.status(200).send({ message:'Welcome to express-mongodb app' }); 
 });

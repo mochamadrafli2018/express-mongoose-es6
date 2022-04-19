@@ -1,18 +1,19 @@
-const Schema = require('../models/user.schema');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
+import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
+import User from '../models/user.js'
+// const User = import ('../models/user.schema')
 
 // user authentication
-exports.signIn = (req, res) => {
+const login = (req, res) => {
     // validate request
     let {email,password} = req.body;
     console.log(req.body);
-    if (!email) { return res.status(400).send({ message: 'Email harus di isi !' }); }
-    if (!password) { return res.status(400).send({ message: 'Password harus di isi !' }); }
-    if (password.length < 8) { return res.status(400).send({ message: 'Password harus sama dengan atau lebih dari 8 karakter !' }); }
+    if (!email) return res.status(400).send({ message: 'Email harus di isi !' });
+    if (!password) return res.status(400).send({ message: 'Password harus di isi !' });
+    if (password.length < 8) return res.status(400).send({ message: 'Password harus sama dengan atau lebih dari 8 karakter !' });
     // check email already exist or not
     try {
-        Schema.findOne({ email: email }).then((user)=>{
+        User.findOne({ email: email }).then((user)=>{
             if (!user) {
                 console.log('Email tidak ditemukan pada database.');
                 return res.status(500).send({ message: 'Email tidak terdaftar, silahkan daftar terlebih dahulu.'}); 
@@ -54,7 +55,7 @@ exports.signIn = (req, res) => {
 }
 
 // user authorization with verify the access token
-exports.verifyAccessToken = (req, res) => {
+const verifyAccessToken = (req, res) => {
     const header = req.headers.authorization;
     const authHeader = req.headers['authorization']; // header and authHeader are same
     const token = authHeader.split(' ')[1];
@@ -66,7 +67,7 @@ exports.verifyAccessToken = (req, res) => {
     // convert token to json (decoded)
     const decodedResult = jwt.verify(token, process.env.JWT_SECRET);
     console.log(decodedResult.id);
-    Schema.findOne({ _id: decodedResult.id }).then(user => {
+    User.findOne({ _id: decodedResult.id }).then(user => {
         if (user.role === 'admin') {
             console.log(user.name);
             return res.status(200).send({
@@ -83,3 +84,6 @@ exports.verifyAccessToken = (req, res) => {
         return res.status(401).send({message: 'invalid jwt token'}); 
     });
 };
+
+const auth = {login, verifyAccessToken}
+export default auth

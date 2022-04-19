@@ -1,8 +1,6 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose"
 
-module.exports = mongoose.model(
-  "Register",
-  new mongoose.Schema(
+const model = new mongoose.Schema(
     {
       name : {
         type: String,
@@ -39,7 +37,9 @@ module.exports = mongoose.model(
     { 
       timestamps: true 
     },
-  ),
-  // collection
-  'users',
-);
+)
+
+// name, model, collection
+const User = mongoose.model("User", model, 'users' )
+
+export default User
