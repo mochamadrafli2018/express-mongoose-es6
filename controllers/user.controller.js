@@ -1,5 +1,6 @@
 import bcrypt from 'bcrypt'
 import User from '../models/user.js'
+import jwt from 'jsonwebtoken'
 
 const register = (req, res) => {
     // validate requests
@@ -30,11 +31,23 @@ const register = (req, res) => {
                     updatedScreeningResult: "",
                 });
                 console.log(newUser);           
-                newUser.save().then(data => {
+                newUser.save().then(user => {
                     console.log('Pendaftaran berhasil.');
-                    return res.status(201).send({
+                    // auto sign in token create from user id
+                    var accessToken = jwt.sign(
+                        {id: user._id}, process.env.JWT_SECRET, {expiresIn: 86400},
+                    );
+                    console.log('Token: ', accessToken);
+
+                    return res.status(200).send({
                         message: 'Pendaftaran berhasil.',
-                        data: data,
+                        user: {
+                            id: user._id,
+                            name: user.name,
+                            email: user.email,
+                            role: user.role,
+                        },
+                        token: accessToken,
                     });
                 }).catch(err => {
                     return res.status(500).send({ message: err || 'Pendaftaran gagal.' });
